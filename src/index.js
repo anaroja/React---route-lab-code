@@ -6,10 +6,12 @@ import {
 
 import App from './App';
 import './index.css';
+import data from './data/stock-data';
+
 
 ReactDOM.render(
   <Router>
-    <App />
+    <App/>
   </Router>,
   document.getElementById('root')
 );
