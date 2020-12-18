@@ -4,15 +4,13 @@ import { Route, Link, Switch, Redirect } from "react-router-dom"
 import Home from "./Home.js";
 import About from "./About.js";
 import Stocks from "./Stocks.js";
-
-
-
-
+import StockInfo from "./StockInfo.js";
 
 class App extends Component {
 
   render() {
     console.log(this.props.data);
+
     return (
       <div>
         <nav>
@@ -30,10 +28,17 @@ class App extends Component {
         </nav>
       <main>
         <Switch>
-          <Route path="/stocks" component={Stocks}/>
+          {/* this would not work because of the order */}
+          {/* <Route path="/stocks" component={Stocks}/>
           <Route path="/stocks/:symbol" render={(routerProps) => <Stocks/>} />
           <Route path="/" render={() => <Redirect to="/stocks" />}/>
-          <Route path="/about" component={About}/>
+          <Route path="/about" component={About}/> */}
+
+          {/* this works with routes because of the order */}
+          <Route path="/stocks" exact component={Stocks} />
+          <Route path="/about" component={About} />
+          <Route path="/stocks/:symbol" render={routerProps => <StockInfo stock={routerProps}/>} />
+          <Route path="/" render={() => <Redirect to="/stocks" />} />
 
         </Switch>
       </main>
